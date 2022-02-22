@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        .textbox-wrapper {
+            
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            grid-template-rows: 100px;
+
+            height: 38px;
+            width: 190px;
+
+            margin: 0 auto;
+        }
+        .textbox {
+            height: 30px;
+            width: 30px;
+
+            border-width: 2px;
+            border-style: solid;
+            border-color: #aaa;
+
+            margin: 2px;
+            display: grid;
+            place-items: center;
+
+            font-size: 1em;
+            font-weight: bold;
+        }
+
+        .hilight {
+            border-color: #333;
+        }
+
+        .hit {
+            background-color: #0a0;
+        }
+
+        .blow {
+            background-color: #aa0;
+        }
+
+        .keyboard1 {
+            
+            display: grid;
+            grid-template-columns: repeat(10, 1fr);
+            grid-template-rows: 100px;
+
+            height: 38px;
+            width: 288px;
+
+            margin: 0 auto;
+        }
+        .keyboard2 {
+            
+            display: grid;
+            grid-template-columns: repeat(9, 1fr);
+            grid-template-rows: 100px;
+
+            height: 38px;
+            width: 264px;
+
+            margin: 0 auto;
+        }
+        .keyboard3 {
+            
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 2fr;
+            grid-template-rows: 100px;
+
+            height: 38px;
+            width: 288px;
+
+            margin: 0 auto;
+        }
+
+        .key {
+            height: 30px;
+            border-width: 2px;
+            border-radius: 25%;
+            border-style: solid;
+            border-color: #aaa;
+
+            margin: 2px;
+            display: grid;
+            place-items: center;
+
+            font-size: 0.8em;
+            font-style: bold;
+        }
+    </style>
+</head>
+<body>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
+
+    <div id="word">
+        <div class="textbox-wrapper" v-for="(word, i) in words">
+            <div v-bind:class="{textbox:class_default, hilight:class_hilight[i][j], hit:class_hit[i][j], blow:class_blow[i][j]}" v-for="(char, j) in word" :key="char" v-on:click="onWordPanelTouch(event, i, j)">{{ char }}</div>
+        </div>
+    </div>
+
+
+    <div class="keyboard1" id="keyboard1">
+        <div class="key" v-for="key in keys" :key="key" v-on:click="onKeyDown">{{ key }}</div>
+    </div>
+
+    <div class="keyboard2" id="keyboard2">
+        <div class="key" v-for="key in keys" :key="key" v-on:click="onKeyDown">{{ key }}</div>
+    </div>
+
+    <div class="keyboard3" id="keyboard3">
+        <div class="key" v-for="key in keys" :key="key" v-on:click="onKeyDown">{{ key }}</div>
+    </div>
+
+    <div id="totalwords">Hints: {{ total }}</div>
+    <div id="hint">{{ list }}</div>
+    
+    <script src="wordle.js"></script>
+</body>
+</html>
