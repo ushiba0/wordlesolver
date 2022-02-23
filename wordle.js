@@ -20,9 +20,12 @@ const onKeyDown = e => {
             // Move cursor backward
             if(cursor.word===0 && cursor.char===0){
                 // Nothing to do
+
+                console.warn("koko1")
             }else if(cursor.char === 0){
-                cursor.char = 5;
+                cursor.char = 4;
                 cursor.word -= 1;
+                console.warn("koko2")
             }else{
                 cursor.char -= 1;
             }
