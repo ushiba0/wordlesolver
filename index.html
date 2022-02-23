@@ -11,16 +11,19 @@
             
             display: grid;
             grid-template-columns: repeat(5, 1fr);
-            grid-template-rows: 100px;
 
-            height: 38px;
-            width: 190px;
+            width: calc(50vw + 40px);
+            max-width: 500px;
 
-            margin: 0 auto;
+            margin: auto;
+            
         }
         .textbox {
-            height: 30px;
-            width: 30px;
+            height: 10vw;
+            width: 10vw;
+
+            max-width: 70px;
+            max-height: 70px;
 
             border-width: 2px;
             border-style: solid;
@@ -39,49 +42,38 @@
         }
 
         .hit {
-            background-color: #0a0;
+            background-color: rgb(106, 170, 100);
+            border-color: rgb(106, 170, 100);
         }
 
         .blow {
-            background-color: #aa0;
+            background-color: rgb(201, 180, 88);
+            border-color: rgb(201, 180, 88);
         }
 
         .keyboard1 {
-            
-            display: grid;
             grid-template-columns: repeat(10, 1fr);
-            grid-template-rows: 100px;
-
-            height: 38px;
-            width: 288px;
-
-            margin: 0 auto;
+            width: 100%;
+            max-width: 500px;
         }
         .keyboard2 {
-            
-            display: grid;
             grid-template-columns: repeat(9, 1fr);
-            grid-template-rows: 100px;
-
-            height: 38px;
-            width: 264px;
-
-            margin: 0 auto;
+            width: 90%;
+            max-width: 450px;
         }
         .keyboard3 {
-            
+            grid-template-columns: 1.8fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1.8fr;
+            width: 100%;
+            max-width: 500px;
+        }
+        .keyboard {
             display: grid;
-            grid-template-columns: 2fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 2fr;
-            grid-template-rows: 100px;
-
-            height: 38px;
-            width: 288px;
-
+            height: auto;
             margin: 0 auto;
         }
 
         .key {
-            height: 30px;
+            height: 40px;
             border-width: 2px;
             border-radius: 25%;
             border-style: solid;
@@ -106,15 +98,15 @@
     </div>
 
 
-    <div class="keyboard1" id="keyboard1">
+    <div class="keyboard keyboard1" id="keyboard1">
         <div class="key" v-for="key in keys" :key="key" v-on:click="onKeyDown">{{ key }}</div>
     </div>
 
-    <div class="keyboard2" id="keyboard2">
+    <div class="keyboard keyboard2" id="keyboard2">
         <div class="key" v-for="key in keys" :key="key" v-on:click="onKeyDown">{{ key }}</div>
     </div>
 
-    <div class="keyboard3" id="keyboard3">
+    <div class="keyboard keyboard3" id="keyboard3">
         <div class="key" v-for="key in keys" :key="key" v-on:click="onKeyDown">{{ key }}</div>
     </div>
 

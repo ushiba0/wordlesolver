@@ -13,6 +13,26 @@ const onKeyDown = e => {
 
     switch(key){
         case "DEL":
+        {   
+            // Clear cursor hilight
+            words.$set(words.class_hilight[cursor.word], cursor.char, 0);
+
+            // Move cursor backward
+            if(cursor.word===0 && cursor.char===0){
+                // Nothing to do
+            }else if(cursor.char === 0){
+                cursor.char = 5;
+                cursor.word -= 1;
+            }else{
+                cursor.char -= 1;
+            }
+
+            const words_copy = [...words.words];
+            const word = words_copy[cursor.word].split('');
+            word[cursor.char] = " ";
+            words_copy[cursor.word] = word.join('');
+            words.words = words_copy;
+        }
             break;
         case "ENT":
             break;
@@ -32,20 +52,16 @@ const onKeyDown = e => {
             // Move cursor
             if(cursor.word===5 && cursor.char===4){
                 // Nothing to do
-                break;
-            }
-
-            if(cursor.char == 4){
+            }else if(cursor.char == 4){
                 cursor.char = 0;
                 cursor.word += 1;
-                break;
+            }else{
+                cursor.char += 1;
             }
-
-            cursor.char += 1;
             break;
     }
 
-    // Clear hilight
+    // Set hilight
     words.$set(words.class_hilight[cursor.word], cursor.char, 1);
 
     do_wordle();
